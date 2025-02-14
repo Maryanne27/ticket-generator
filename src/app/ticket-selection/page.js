@@ -32,12 +32,16 @@ export default function Page() {
       setTimeout(() => setError(""), 3000);
       return;
     }
+  
+    localStorage.setItem("selectedTicket", selectedTicket);
+    localStorage.setItem("selectedCount", selectedCount);
+  
     setIsLoading(true);
     setTimeout(() => {
       router.push("/attendee-form");
     }, 2000);
   };
-
+  
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -125,30 +129,31 @@ export default function Page() {
           </div>
         )}
 
-        <div className="text-center mt-6">
-          <div className="flex flex-col lg:flex-row justify-between items-center gap-2">
-            <Button
-              type="cancel"
-              onClick={() => {
-                setSelectedTicket("");
-                setSelectedCount("");
-                setError("");
-              }}
-            />
-            <Button
-              type="next"
-              onClick={handleNext}
-              isLoading={isLoading}
-              className={` rounded-lg text-white  transition ${
-                isLoading
-                  ? "bg-gray-500 cursor-not-allowed"
-                  : "bg-[#197686] hover:bg-[#12464E] active:scale-95"
-              }`}
-              disabled={isLoading}
-            >
-              {isLoading ? "Loading..." : "Next"}
-            </Button>
-          </div>
+<div className="text-center mt-6">
+  <div className="flex flex-col-reverse lg:flex-row justify-between items-center gap-2">
+    <Button
+      type="cancel"
+      onClick={() => {
+        setSelectedTicket("");
+        setSelectedCount("");
+        setError("");
+      }}
+    />
+    <Button
+      type="next"
+      onClick={handleNext}
+      isLoading={isLoading}
+      className={`rounded-lg text-white transition ${
+        isLoading
+          ? "bg-gray-500 cursor-not-allowed"
+          : "bg-[#197686] hover:bg-[#12464E] active:scale-95"
+      }`}
+      disabled={isLoading}
+    >
+      {isLoading ? "Loading..." : "Next"}
+    </Button>
+  </div>
+
         </div>
       </div>
     </motion.div>
