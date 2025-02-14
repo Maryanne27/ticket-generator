@@ -18,7 +18,7 @@ export default function Page() {
   const [selectedTicket, setSelectedTicket] = useState("REGULAR ACCESS");
   const [selectedCount, setSelectedCount] = useState("");
   const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const tickets = [
     { type: "REGULAR ACCESS", price: "Free" },
@@ -32,16 +32,17 @@ export default function Page() {
       setTimeout(() => setError(""), 3000);
       return;
     }
-  
+
     localStorage.setItem("selectedTicket", selectedTicket);
     localStorage.setItem("selectedCount", selectedCount);
-  
-    setIsLoading(true);
+
+    setLoading(true);
     setTimeout(() => {
+      setLoading(false);
       router.push("/attendee-form");
     }, 2000);
   };
-  
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -129,31 +130,18 @@ export default function Page() {
           </div>
         )}
 
-<div className="text-center mt-6">
-  <div className="flex flex-col-reverse lg:flex-row justify-between items-center gap-2">
-    <Button
-      type="cancel"
-      onClick={() => {
-        setSelectedTicket("");
-        setSelectedCount("");
-        setError("");
-      }}
-    />
-    <Button
-      type="next"
-      onClick={handleNext}
-      isLoading={isLoading}
-      className={`rounded-lg text-white transition ${
-        isLoading
-          ? "bg-gray-500 cursor-not-allowed"
-          : "bg-[#197686] hover:bg-[#12464E] active:scale-95"
-      }`}
-      disabled={isLoading}
-    >
-      {isLoading ? "Loading..." : "Next"}
-    </Button>
-  </div>
-
+        <div className="text-center mt-6">
+          <div className="flex flex-col-reverse lg:flex-row justify-between items-center gap-2">
+            <Button
+              type="cancel"
+              onClick={() => {
+                setSelectedTicket("");
+                setSelectedCount("");
+                setError("");
+              }}
+            />
+            <Button type="next" onClick={handleNext} isLoading={loading} />
+          </div>
         </div>
       </div>
     </motion.div>
