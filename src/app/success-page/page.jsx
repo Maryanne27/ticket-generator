@@ -1,11 +1,10 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { QRCodeCanvas } from "qrcode.react";
-
+import html2canvas from "html2canvas";
 import ticket from "../../../public/ticket.svg";
-import user from "../../../public/user.png";
 import Button from "../component/Button";
 import Steps from "../component/Steps";
 import { Road_Rage } from "next/font/google";
@@ -18,6 +17,7 @@ display: "swap",
 
 function Page() {
 const router = useRouter();
+const ticketRef = useRef(null);
 const [formData, setFormData] = useState({
   name: "John Doe",
   email: "user@example.com",
@@ -55,6 +55,18 @@ const qrCodeData = JSON.stringify({
   ticketCount: ticketData.count,
 });
 
+const handleDownload = async () => {
+  const element = ticketRef.current;
+  const canvas = await html2canvas(element);
+  const data = canvas.toDataURL("image/png");
+  const link = document.createElement("a");
+  link.href = data;
+  link.download = "ticket.png";
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
+
 return (
   <div className="w-[700px] mx-auto p-8 bg-darkBlue rounded-lg shadow-xl border border-bgBlue text-center">
     <Steps title="Ready" step="3" progress="100%" />
@@ -68,7 +80,7 @@ return (
       </p>
 
       {/* Ticket selection Section */}
-      <div className="relative mt-6">
+      <div className="relative mt-6" ref={ticketRef}>
         <Image
           src={ticket}
           alt="ticket background"
@@ -98,11 +110,7 @@ return (
                   className="w-24 h-24 rounded-lg object-cover border-4 border-[#24A0B5]"
                 />
               ) : (
-                <Image
-                  src={user}
-                  alt="avatar"
-                  className="w-24 h-24 object-cover"
-                />
+                <div className="w-24 h-24 bg-black" />
               )}
             </div>
 
@@ -151,7 +159,7 @@ return (
     <div className="text-center ">
       <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
         <Button type="bookAnother" onClick={() => router.push("/")} />
-        <Button type="download" />
+        <Button type="download" onClick={handleDownload} />
       </div>
     </div>
   </div>

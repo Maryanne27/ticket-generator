@@ -89,7 +89,6 @@ return (
         </CldUploadWidget>
       </div>
       
-  
       {inputFields.map(({ name, label, type, icon }, i) => (
   <div key={i} className="mt-4">
     <label className="text-gray-300 text-sm">{label}</label>
