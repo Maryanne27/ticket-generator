@@ -157,7 +157,7 @@ return (
     </div>
 
     <div className="text-center ">
-      <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
+      <div className="flex flex-col lg:flex-row justify-between items-center gap-2">
         <Button type="bookAnother" onClick={() => router.push("/")} />
         <Button type="download" onClick={handleDownload} />
       </div>

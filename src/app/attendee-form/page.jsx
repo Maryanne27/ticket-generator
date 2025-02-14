@@ -126,7 +126,7 @@ return (
 ))}
 
       {/* Buttons */}
-      <div className="text-center mt-6 flex flex-col sm:flex-row justify-between items-center gap-6">
+      <div className="text-center mt-6 flex flex-col sm:flex-row justify-between items-center gap-2">
         <Button type="back" onClick={() => router.push('/')} />
         <Button type="freeTicket" onClick={handleSubmit} />
       </div>

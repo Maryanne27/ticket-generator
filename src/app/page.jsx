@@ -42,7 +42,7 @@ useEffect(() => {
 }, []);
 
 return (
-  <div className="relative min-h-screen flex flex-col items-center justify-center text-white overflow-hidden bg-gradient-to-br from-[#012024] via-[#02343F] to-[#045D64] pt-8 mt-10">
+  <div className="relative min-h-screen flex flex-col items-center justify-center text-white overflow-hidden bg-gradient-to-br from-[#012024] via-[#02343F] to-[#045D64]">
     <div className="absolute inset-0 pointer-events-none">
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-teal-400 opacity-20 blur-3xl rounded-full"></div>
 

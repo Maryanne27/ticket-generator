@@ -54,7 +54,7 @@ export default function Page() {
           className="bg-[radial-gradient(103.64%_57.39%_at_14%_32%,rgba(36,160,181,0.2)_0%,rgba(36,160,181,0)_100%)] p-6 rounded-lg border border-[#07373F] backdrop-blur-md"
         >
           <h3
-            className={`${roadRage.className} text-2xl md:text-6xl font-bold text-center whitespace-nowrap text-white`}
+            className={`${roadRage.className} text-4xl md:text-6xl font-bold text-center whitespace-nowrap text-white`}
           >
             Techember Fest <span className="text-white">"25"</span>
           </h3>
@@ -126,7 +126,7 @@ export default function Page() {
         )}
 
         <div className="text-center mt-6">
-          <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
+          <div className="flex flex-col lg:flex-row justify-between items-center gap-2">
             <Button
               type="cancel"
               onClick={() => {
