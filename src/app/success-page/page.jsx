@@ -68,10 +68,10 @@ const handleDownload = async () => {
 };
 
 return (
-  <div className="w-[700px] mx-auto p-8 bg-darkBlue rounded-lg shadow-xl border border-bgBlue text-center">
+  <div className="lg-w-[700px] w-375 mx-auto p-8 bg-darkBlue rounded-lg shadow-xl border border-bgBlue text-center">
     <Steps title="Ready" step="3" progress="100%" />
     <div className="pt-4">
-      <h1 className="text-white text-3xl font-semibold">
+      <h1 className="text-white md-text-3xl text-xl font-semibold">
         Your Ticket is Booked!
       </h1>
       <p className="text-gray-400 mt-2 text-sm">

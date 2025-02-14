@@ -1,7 +1,7 @@
 const Steps = ({ title, step, progress }) => {
 return (
   <div>
-    <div className="flex md:flex-row flex-col justify-between sm:items-center mb-3">
+    <div className="flex md:flex-row lg:flex-row flex-col justify-between mb-3">
       <h2 className="text-3xl md:text-5xl font-light font-jeju text-white">
         {title}
       </h2>
