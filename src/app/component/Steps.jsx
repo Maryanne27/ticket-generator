@@ -2,7 +2,7 @@ const Steps = ({ title, step, progress }) => {
 return (
   <div>
     <div className="flex md:flex-row lg:flex-row flex-col justify-between mb-3">
-      <h2 className="text-3xl md:text-5xl font-light font-jeju text-white">
+      <h2 className="text-3xl md:text-4xl font-light font-jeju text-white">
         {title}
       </h2>
       <p className="text-base text-[#FAFAFA]">Step {step}/3</p>

@@ -21,9 +21,11 @@ export default function Page() {
   ];
 
   useEffect(() => {
-    const savedData = JSON.parse(localStorage.getItem('formData') || '{}');
-    setFormData({ ...formData, ...savedData });
+    localStorage.removeItem('formData');
+    setFormData({ name: '', email: '', request: '', uploadImage: '' });
+    setPublicId(null);
   }, []);
+  
 
   useEffect(() => {
     localStorage.setItem('formData', JSON.stringify(formData));
@@ -58,11 +60,11 @@ export default function Page() {
   };
 
   return (
-    <div className="relative z-10 p-4 sm:p-6 border mx-auto border-bgBlue rounded-lg shadow-lg max-w-[95%] md:max-w-2xl lg:max-w-4xl">
+    <div className="relative z-10 p-4 sm:p-6 border mx-auto border-bgBlue rounded-lg shadow-lg w-[350px] md:w-[375px] lg:w-[700px] justify-center">
       <Steps title="Attendee Details" step="2" progress="60%" />
       <div className="bg-darkBlue p-4 sm:p-6 border border-bgBlue rounded-lg shadow-lg">
         <div className="border border-bgBlue rounded-lg px-4 bg-[#08252B] pb-10 pt-4">
-          <p className="text-[#FAFAFA] pb-6 text-sm sm:text-base md:text-lg font-roboto font-normal text-center">Upload Profile Photo</p>
+          <p className="text-[#FAFAFA] pb-6 text-sm sm:text-base md:text-lg font-roboto font-normal text-center lg:text-left md:text-left">Upload Profile Photo</p>
           {publicId && <CldImage src={publicId} alt={publicId} />}
           <CldUploadWidget uploadPreset="ticket" onSuccess={({ event, info }) => {
             if (event === "success") {
@@ -89,40 +91,47 @@ export default function Page() {
         </div>
         
         {inputFields.map(({ name, label, type, icon }, i) => (
-          <div key={i} className="mt-4">
-            <label className="text-gray-300 text-xs sm:text-sm">{label}</label>
-            <div className="relative">
-              {icon}
-              {type === 'textarea' ? (
-                <textarea
-                  name={name}
-                  className={`w-full p-2 sm:p-3 bg-[#02191D] text-gray50 rounded-lg border focus:outline-none resize-none ${
-                    errors[name] ? 'border-red-500' : 'border-[#24A0B5]/30'
-                  }`}
-                  placeholder="Textarea"
-                  value={formData[name]}
-                  onChange={handleChange}
-                />
-              ) : (
-                <input
-                  type={type}
-                  name={name}
-                  className={`w-full p-2 sm:p-3 ${name === 'email' ? 'pl-8 sm:pl-10 text-xs' : ''} bg-[#02191D] text-gray50 rounded-lg border focus:outline-none transition-all ${
-                    errors[name] ? 'border-red-500' : 'border-[#24A0B5]/30'
-                  }`}
-                  value={formData[name]}
-                  onChange={handleChange}
-                />
-              )}
-            </div>
-            {errors[name] && (
-              <p className="mt-2 flex items-center gap-2 text-red-400 text-xs sm:text-sm animate-slideIn">
-                <ExclamationCircleIcon className="w-4 sm:w-5 h-4 sm:h-5 text-red-400" />
-                {errors[name]}
-              </p>
-            )}
-          </div>
-        ))}
+  <div key={i} className="mt-4">
+    <label className="text-gray-300 text-xs sm:text-sm">{label}</label>
+    <div className="relative flex items-center">
+      {icon && !formData[name] && (
+        <span className="absolute left-3 top-[2px] transform -translate-y-1/2">
+          {icon}
+        </span>
+      )}
+      {type === 'textarea' ? (
+        <textarea
+          name={name}
+          className={`w-full p-2 sm:p-3 bg-[#02191D] text-gray50 rounded-lg border focus:outline-none resize-none text-center ${
+            errors[name] ? 'border-red-500' : 'border-[#24A0B5]/30'
+          }`}
+          placeholder="Textarea"
+          value={formData[name]}
+          onChange={handleChange}
+        />
+      ) : (
+        <input
+          type={type}
+          name={name}
+          className={`w-full p-2 sm:p-3 ${
+            name === 'email' ? (formData[name] ? 'pl-3' : 'pl-10') : 'text-center'
+          } bg-[#02191D] text-gray50 rounded-lg border focus:outline-none transition-all ${
+            errors[name] ? 'border-red-500' : 'border-[#24A0B5]/30'
+          }`}
+          value={formData[name]}
+          onChange={handleChange}
+        />
+      )}
+    </div>
+    {errors[name] && (
+      <p className="mt-2 flex items-center gap-2 text-red-400 text-xs sm:text-sm animate-slideIn">
+        <ExclamationCircleIcon className="w-4 sm:w-5 h-4 sm:h-5 text-red-400" />
+        {errors[name]}
+      </p>
+    )}
+  </div>
+))}
+
 
         {/* Buttons */}
         <div className="text-center mt-6">
