@@ -63,11 +63,11 @@ export default function Page() {
           >
             Techember Fest <span className="text-white">"25"</span>
           </h3>
-          <p className="text-center mt-2 text-xs md:text-base md:w-[340px] mx-auto">
+          <p className="text-center mt-2 text-sm md:text-base md:w-[340px] mx-auto text-[FAFAFA]">
             Join us for an unforgettable experience at [Event Name]. Secure your
             spot now.
           </p>
-          <p className="text-center text-gray50 mt-2 text-xs md:text-base">
+          <p className="text-center text-[FAFAFA] mt-2 text-sm md:text-base">
             📍 Eko Hotel || March 15, 2025 | 7:00 PM
           </p>
         </motion.div>
@@ -131,7 +131,7 @@ export default function Page() {
         )}
 
         <div className="text-center mt-6">
-          <div className="flex flex-col-reverse lg:flex-row justify-between items-center gap-2">
+          <div className="flex flex-col-reverse lg:flex-row justify-between items-center gap-2 md:gap-4">
             <Button
               type="cancel"
               onClick={() => {
